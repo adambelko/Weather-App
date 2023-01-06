@@ -9,10 +9,22 @@
 <title>Weather App</title>
 </head>
 <body>
-    <form>
-        <label for="location">Lacation</label>
-        <input type="text" id="location" value="Sydney">
-        <button type="submit" class="submit-btn">Submit</button>
-    </form>
+    <header>
+        <div class="header__container">
+            <img src="" alt="weather-logo">
+            <h1 class="header__title">Weather App</h1>
+        </div>
+    </header>
+    <main>
+        <form class="main__form">
+            <input type="text" id="main__form-input" value="Sydney">
+            <button type="submit" class="main__form-search-btn">Search</button>
+            <button class="main__form-units-btn">
+                <span class="metric-units metric-units--active">°C</span> 
+                / <span class="imperial-units">°F</span>
+            </button>
+        </form>
+        <div class="main__data-container"></div>
+    </main>
 </body>
 </html>
