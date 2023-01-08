@@ -4,12 +4,15 @@
 }
 
 :root {
-    --blue: #6dc8f2;
+    --white: #ffffff;
+    --blue: #27aae2;
     --light-grey:  #f6f6f6;
+    --darkerGrey: #dddddd;
 }
 
 html {
-    font-family: 'Pragati Narrow', sans-serif;
+    font-family: 'Raleway', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 62.5%;
     box-sizing: border-box;
 }
@@ -19,7 +22,7 @@ header {
     display: flex;
     justify-content: center;
     color: var(--white);
-    font-size: 2.6rem;
+    font-size: 3.6rem;
     background: var(--blue);
 }
 
@@ -31,8 +34,9 @@ header {
 }
 
 .header__img {
-    height: 50px;
+    height: 100px;
     width: auto;
+    background: var(--blue);
 }
 
 /* ----- MAIN ----- */
@@ -67,12 +71,45 @@ main {
     border-radius: 0.6rem;
 }
 
+.main__form-search-btn:hover,
+.main__form-units-btn:hover {
+    background: var(--white);
+}
+
 .metric-units--active,
 .imperial-units--active {
     font-weight: bold;
 }
 
-.main__data-container {
-    font-size: 2.2rem;
-    margin-top: 1rem;
+.main__data-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--darkerGrey);
+    font-size: 2.4rem;
+    margin-top: 2rem;
+    gap: 0.3rem;
+}
+
+.weather-data {
+    padding: 0rem 6rem 0rem 6rem;
+}
+
+.main__data-wrapper-location {
+    font-size: 5.3rem;
+    font-weight: bold;
+    padding-top: 2rem;
+}
+
+.main__data-wrapper-temp {
+    font-size: 6rem;
+    font-weight: 300;
+}
+
+.main__data-wrapper-temp-min-max {
+    display: flex;
+}
+
+.main__data-wrapper-wind-speed {
+    padding-bottom: 2rem;
 }
