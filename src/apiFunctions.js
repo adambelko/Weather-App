@@ -23,18 +23,16 @@ const getWeatherData = async (lat, lon, unitType) => {
         console.log(responseData);
 
         const location = responseData.name;
+        const weather = responseData.weather[0].description;
         const temp = responseData.main.temp;
-        const tempMin = responseData.main.temp_min;
-        const tempMax = responseData.main.temp_max;
         const feelsLike = responseData.main.feels_like;
         const humidity = responseData.main.humidity;
         const windSpeed = responseData.wind.speed;
 
         return {
             location,
+            weather,
             temp,
-            tempMin,
-            tempMax,
             feelsLike,
             humidity,
             windSpeed,

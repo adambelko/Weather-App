@@ -14,9 +14,9 @@ let unitType = "metric";
 
 const getUnitType = () => {
     if (unitType === "metric") {
-        return { temp: " °C", speed: " kmh" };
+        return { temp: "°C", degree: "°", speed: " kmh", humidity: "%" };
     } else {
-        return { temp: " °F", speed: " mph" };
+        return { temp: "°F", degree: "°", speed: " mph", humidity: "%" };
     }
 };
 
@@ -25,7 +25,6 @@ const manageFormInput = async (e) => {
     e.preventDefault();
     const textInputValue = document.querySelector("#main__form-input");
     location = textInputValue.value;
-    console.log(location);
     await getData(unitType);
 };
 
@@ -43,24 +42,49 @@ const getData = async (unitType) => {
 // Populate screen with data
 const displayWeatherData = (data) => {
     resetWeatherData();
-    const dataWrapper = document.querySelector(".main__data-container");
-    createParagraph("Temp: ", data.temp, getUnitType().temp);
-    createParagraph("Wind speed: ", data.windSpeed, getUnitType().speed);
+    newTextPara(data.location, "location");
+    newTextPara(capFirstLetter(data.weather), "weather");
+    newPara("", data.temp, getUnitType().temp, "temp");
+    newPara("Feels like ", data.feelsLike, getUnitType().degree, "feels-like");
+    newPara("Humidity: ", data.humidity, getUnitType().humidity, "humidity");
+    newPara("Wind speed: ", data.windSpeed, getUnitType().speed, "wind-speed");
 };
 
 // Wipeout all data from the screen
 const resetWeatherData = () => {
-    const dataWrapper = document.querySelector(".main__data-container");
+    const dataWrapper = document.querySelector(".main__data-wrapper");
     const weatherData = document.querySelectorAll(".weather-data");
     weatherData.forEach((data) => {
         dataWrapper.removeChild(data);
     });
 };
 
-// Make API calls if user wants to see the data in another unitType
+// Create new paragraph, text only
+const newTextPara = (data, className) => {
+    const dataWrapper = document.querySelector(".main__data-wrapper");
+    const p = document.createElement("p");
+    p.classList.add(`main__data-wrapper-${className}`, "weather-data");
+    p.textContent = data;
+    dataWrapper.appendChild(p);
+};
+
+// Create new paragraph, text and integers
+const newPara = (text, data, unit, className) => {
+    const dataWrapper = document.querySelector(".main__data-wrapper");
+    const p = document.createElement("p");
+    p.classList.add(`main__data-wrapper-${className}`, "weather-data");
+    p.textContent = text + roundNumber(data) + unit;
+    dataWrapper.appendChild(p);
+};
+
+const roundNumber = (number) => number.toFixed(1);
+
+// Make first letter capital
+const capFirstLetter = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+
+// Make new API calls if/when user wants to see the data in another unitType
 const toggleUnits = async (e) => {
     e.preventDefault();
-    console.log(location);
 
     if (location === null && unitType === "metric") {
         toggleBoldText();
@@ -79,23 +103,12 @@ const toggleUnits = async (e) => {
     }
 };
 
-const roundNumber = (number) => number.toFixed(1);
-
 // Change boldness of a text on toggle units button
 const toggleBoldText = () => {
-    console.log("here");
     const boldMetric = document.querySelector(".metric-units");
     const boldImperial = document.querySelector(".imperial-units");
     boldMetric.classList.toggle("metric-units--active");
     boldImperial.classList.toggle("imperial-units--active");
-};
-
-const createParagraph = (text, data, unit) => {
-    const dataWrapper = document.querySelector(".main__data-container");
-    const p = document.createElement("p");
-    p.classList.add("weather-data");
-    p.textContent = text + roundNumber(data) + unit;
-    return dataWrapper.appendChild(p);
 };
 
 eventListeners();
