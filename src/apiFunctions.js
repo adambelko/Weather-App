@@ -20,8 +20,6 @@ const getWeatherData = async (lat, lon, unitType) => {
             `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=27424b54a6ab420d52712155ee6a6ff1&units=${unitType}`
         );
         const responseData = await response.json();
-        console.log(responseData);
-
         const location = responseData.name;
         const weather = responseData.weather[0].description;
         const temp = responseData.main.temp;

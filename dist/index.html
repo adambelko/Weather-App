@@ -4,27 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&family=Roboto:wght@300;400&display=swap" rel="stylesheet">    <link rel="stylesheet" href="style.css">
     <script src="main.js" defer></script>
 <title>Weather App</title>
 </head>
 <body>
     <header>
         <div class="header__container">
-            <img src="" alt="weather-logo">
+            <img src="img/sun-cloud-icon.jpg" class="header__img" alt="weather-logo">
             <h1 class="header__title">Weather App</h1>
         </div>
     </header>
     <main>
         <form class="main__form">
-            <input type="text" id="main__form-input" value="Sydney">
+            <input type="text" id="main__form-input" placeholder="City / Town">
             <button type="submit" class="main__form-search-btn">Search</button>
             <button class="main__form-units-btn">
                 <span class="metric-units metric-units--active">Metric</span> 
                 / <span class="imperial-units">Imperial</span>
             </button>
         </form>
-        <div class="main__data-container"></div>
+        <div class="main__data-wrapper"></div>
     </main>
 </body>
 </html>
