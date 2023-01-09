@@ -2,11 +2,14 @@
 const getGeoCoord = async (location, unitType) => {
     try {
         const response = await fetch(
-            `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=27424b54a6ab420d52712155ee6a6ff1`
+            `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=27424b54a6ab420d52712155ee6a6ff1`,
+            { mode: "cors" }
         );
+
         const responseData = await response.json();
         const lat = responseData[0].lat;
         const lon = responseData[0].lon;
+
         return { lat, lon, unitType };
     } catch (error) {
         return console.log(error);
@@ -17,8 +20,10 @@ const getGeoCoord = async (location, unitType) => {
 const getWeatherData = async (lat, lon, unitType) => {
     try {
         const response = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=27424b54a6ab420d52712155ee6a6ff1&units=${unitType}`
+            `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=27424b54a6ab420d52712155ee6a6ff1&units=${unitType}`,
+            { mode: "cors" }
         );
+
         const responseData = await response.json();
         const location = responseData.name;
         const weather = responseData.weather[0].description;
